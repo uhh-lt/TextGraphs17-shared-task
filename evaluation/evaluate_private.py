@@ -11,6 +11,7 @@ def parse_args():
     parser.add_argument('--input_dir', type=str, required=True)
     parser.add_argument('--output_dir', type=str, required=True)
 
+
     args = parser.parse_args()
 
     return args
@@ -68,10 +69,10 @@ def main(args):
     test_df["prediction"] = predictions_df["prediction"]
 
     public_test_df = test_df[test_df["subset"] == "public"]
-    private_test_df = test_df[test_df["subset"] == "private"]
+    public_private_test_df = test_df[test_df["subset"].isin(["private", "public"])]
 
     pub_p, pub_r, pub_f1, pub_acc = evaluate(public_test_df)
-    priv_p, priv_r, priv_f1, priv_acc = evaluate(private_test_df)
+    full_p, full_r, full_f1, full_acc = evaluate(public_private_test_df)
     output_pub_scores_fname = os.path.join(output_dir, 'public_scores.txt')
     output_all_scores_fname = os.path.join(output_dir, 'all_scores.txt')
     with open(output_pub_scores_fname, 'w', encoding="utf-8") as out_pub, \
@@ -89,11 +90,11 @@ def main(args):
         out_all.write(f"\tPublic F1: {pub_f1}\n")
         out_all.write(f"\tPublic accuracy: {pub_acc}\n")
 
-        out_all.write("Private test\n")
-        out_all.write(f"\tPrivate precision: {priv_p}\n")
-        out_all.write(f"\tPrivate recall: {priv_r}\n")
-        out_all.write(f"\tPrivate F1: {priv_f1}\n")
-        out_all.write(f"\tPrivate accuracy: {priv_acc}\n")
+        out_all.write("Full test\n")
+        out_all.write(f"\tFull test precision: {full_p}\n")
+        out_all.write(f"\tFull test recall: {full_r}\n")
+        out_all.write(f"\tFull test F1: {full_f1}\n")
+        out_all.write(f"\tFull test accuracy: {full_acc}\n")
 
 
 if __name__ == '__main__':
