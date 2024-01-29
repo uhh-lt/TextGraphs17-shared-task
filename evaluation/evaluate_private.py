@@ -19,7 +19,10 @@ def parse_args():
     #                     default="/home/c204/University/NLP/KGQA_mintaka_data/TextGraphs17-shared-task/data/tsv/prediction_linearized_graph/")
     # parser.add_argument('--output_dir', type=str, required=False,
     #                     default="/home/c204/University/NLP/KGQA_mintaka_data/TextGraphs17-shared-task/data/tsv/prediction_linearized_graph")
-
+    # parser.add_argument('--input_dir', type=str, required=False,
+    #                     default="/home/c204/University/NLP/KGQA_mintaka_data/TextGraphs17-shared-task/data/tsv/chatgpt/")
+    # parser.add_argument('--output_dir', type=str, required=False,
+    #                     default="/home/c204/University/NLP/KGQA_mintaka_data/TextGraphs17-shared-task/data/tsv/chatgpt/")
 
     """
     prediction_linearized_graph
@@ -77,6 +80,7 @@ def main(args):
     if "prediction" not in predictions_df.columns:
         raise RuntimeError('prediction column is not found in submission file')
     predictions_unique_values = set((int(x) for x in predictions_df["prediction"].unique()))
+
     assert len(predictions_unique_values.intersection({0, 1})) == 2
 
     test_df = pd.read_csv(gold_labels_path, sep='\t')
@@ -86,8 +90,9 @@ def main(args):
         raise RuntimeError(f"Mismatched number of rows in predictions and gold labels: {predictions_df.shape[0]} "
                            f"and {test_df.shape[0]}, respectively")
 
-    test_df = test_df.join(predictions_df[["sample_id", "prediction"]], on="sample_id", how="inner",
-                           lsuffix='_left', rsuffix='_right')
+    test_df = test_df.merge(predictions_df[["sample_id", "prediction"]], on="sample_id") #how="inner",)
+                           # lsuffix='_left', rsuffix='_right')
+
     if test_df.shape[0] != predictions_df.shape[0]:
         raise RuntimeError(f"An error occurred while joining gold labels and predictions by sample_id."
                            f"Join result has {test_df.shape[0]} rows. Expected {predictions_df.shape[0]}.")
