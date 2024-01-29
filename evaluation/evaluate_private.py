@@ -11,6 +11,19 @@ def parse_args():
     parser.add_argument('--input_dir', type=str, required=True)
     parser.add_argument('--output_dir', type=str, required=True)
 
+    # parser.add_argument('--input_dir', type=str, required=False,
+    #                     default="/home/c204/University/NLP/KGQA_mintaka_data/TextGraphs17-shared-task/data/tsv/prediction_no_graph/")
+    # parser.add_argument('--output_dir', type=str, required=False,
+    #                     default="/home/c204/University/NLP/KGQA_mintaka_data/TextGraphs17-shared-task/data/tsv/prediction_no_graph")
+    # parser.add_argument('--input_dir', type=str, required=False,
+    #                     default="/home/c204/University/NLP/KGQA_mintaka_data/TextGraphs17-shared-task/data/tsv/prediction_linearized_graph/")
+    # parser.add_argument('--output_dir', type=str, required=False,
+    #                     default="/home/c204/University/NLP/KGQA_mintaka_data/TextGraphs17-shared-task/data/tsv/prediction_linearized_graph")
+
+
+    """
+    prediction_linearized_graph
+    """
 
     args = parser.parse_args()
 
@@ -60,13 +73,24 @@ def main(args):
 
     predictions_df = pd.read_csv(predictions_path, sep='\t')
     predictions_df["prediction"] = predictions_df["prediction"].astype(np.int32)
+    predictions_df["sample_id"] = predictions_df["sample_id"].astype(np.int32)
     if "prediction" not in predictions_df.columns:
         raise RuntimeError('prediction column is not found in submission file')
     predictions_unique_values = set((int(x) for x in predictions_df["prediction"].unique()))
     assert len(predictions_unique_values.intersection({0, 1})) == 2
+
     test_df = pd.read_csv(gold_labels_path, sep='\t')
     test_df["label"] = test_df["correct"].astype(np.int32)
-    test_df["prediction"] = predictions_df["prediction"]
+    test_df["sample_id"] = test_df["sample_id"].astype(np.int32)
+    if test_df.shape[0] != predictions_df.shape[0]:
+        raise RuntimeError(f"Mismatched number of rows in predictions and gold labels: {predictions_df.shape[0]} "
+                           f"and {test_df.shape[0]}, respectively")
+
+    test_df = test_df.join(predictions_df[["sample_id", "prediction"]], on="sample_id", how="inner",
+                           lsuffix='_left', rsuffix='_right')
+    if test_df.shape[0] != predictions_df.shape[0]:
+        raise RuntimeError(f"An error occurred while joining gold labels and predictions by sample_id."
+                           f"Join result has {test_df.shape[0]} rows. Expected {predictions_df.shape[0]}.")
 
     public_test_df = test_df[test_df["subset"] == "public"]
     public_private_test_df = test_df[test_df["subset"].isin(["private", "public"])]
