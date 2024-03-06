@@ -40,9 +40,11 @@ def split_node_labels(n_label, max_line_length=16, min_line_length=4):
 
 def parse_args():
     parser = argparse.ArgumentParser()
-    parser.add_argument('--input_tsv', type=str, required=True)
+    parser.add_argument('--input_tsv', type=str,
+                        default="../data/tsv/train.tsv")
     parser.add_argument('--num_questions', type=int, default=10, required=False)
-    parser.add_argument('--output_dir', type=str, required=True)
+    parser.add_argument('--output_dir', type=str,
+                        default="../question_graph_examples/")
 
     args = parser.parse_args()
 
