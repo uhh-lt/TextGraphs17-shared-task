@@ -7,8 +7,6 @@ We present a dataset for graph-based question answering. The dataset consists of
 
 The data format used in our dataset in compatible with NetworkX. For an example on how to work with shortest path graph, please see [this script](https://github.com/uhh-lt/TextGraphs17-shared-task/tree/main/question_graph_examples).
 
-All the data will be available [here](https://github.com/uhh-lt/TextGraphs17-shared-task/tree/main/data/tsv).
-
 Train dataste is available [here](https://github.com/uhh-lt/TextGraphs17-shared-task/blob/main/data/tsv/train_dev.tsv). It can be used for initial experiments.
 
 
