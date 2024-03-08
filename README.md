@@ -9,8 +9,7 @@ The data format used in our dataset in compatible with NetworkX. For an example 
 
 All the data will be available [here](https://github.com/uhh-lt/TextGraphs17-shared-task/tree/main/data/tsv).
 
-For now, we released [train+dev](https://github.com/uhh-lt/TextGraphs17-shared-task/blob/main/data/tsv/train_dev.tsv) split. 
-
+Train dataste is available [here](https://github.com/uhh-lt/TextGraphs17-shared-task/blob/main/data/tsv/train_dev.tsv). It can be used for initial experiments.
 
 
 ## Data vizualization
