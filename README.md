@@ -8,7 +8,7 @@ We present a dataset for graph-based question answering. The dataset consists of
 The data format used in our dataset in compatible with NetworkX. For an example on how to work with shortest path graphs using NetworkX, please see [this script](https://github.com/uhh-lt/TextGraphs17-shared-task/blob/main/visualization/draw_random_question_graphs.py):
 
 
-Train dataset is available [here](https://github.com/uhh-lt/TextGraphs17-shared-task/blob/main/data/tsv/train.tsv). It can be used for initial experiments.
+Train dataset is available [here](https://github.com/uhh-lt/TextGraphs17-shared-task/blob/main/data/tsv/train.tsv). It can be used for initial experiments. Our dataset is also available at [HuggingFace](https://huggingface.co/datasets/s-nlp/TextGraphs17-shared-task-dataset).
 
 
 ## Data vizualization
