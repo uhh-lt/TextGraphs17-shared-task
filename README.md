@@ -3,7 +3,7 @@
 
 ## Data
 
-We present a dataset for graph-based question answering. The dataset consists of <question; candidate answer> pairs. For each candidate, we present a graph that is obtained by finding the shortest path between named entities mentioned in a question and a candidate answer. As a knowledge graph, we adopted Wikidata. Thus, answer candidate corresponds to a node from the Wikidata knowledge graph. Our dataset has the following fields:
+We present a dataset for graph-based question answering. The dataset consists of <question; candidate answer> pairs. For each candidate, we present a graph that is obtained by finding the shortest path between named entities mentioned in a question and a candidate answer. As a knowledge graph, we adopted Wikidata. Our dataset has the following fields:
 
 * sample_id - an identifier for <question, candidate answer>;
 
