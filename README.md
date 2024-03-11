@@ -35,7 +35,7 @@ We propose two BERT-based [baselines](https://github.com/uhh-lt/TextGraphs17-sha
 
 We see the task as a binary classification. Given a question, answer candidate, and a subgraph from knowledge grpah, your goal is assign a binary label to each pair.
 
-For evaluation, we will adopt precision, recall, F1-measure, and accuracy. For your convenience, we publish an [evaluation script](https://github.com/uhh-lt/TextGraphs17-shared-task/blob/main/evaluation/evaluate.py). The evaluation script can be called as follows:
+For evaluation, we will adopt precision, recall, F1-measure, and accuracy. For your convenience, we publish an [evaluation script](https://github.com/uhh-lt/TextGraphs17-shared-task/blob/main/evaluation/evaluate.py). The evaluation script can be executed as follows:
 ```
 python visualization/draw_random_question_graphs.py \
 --predictions_path <path to tsv-file with predicted labels> \
