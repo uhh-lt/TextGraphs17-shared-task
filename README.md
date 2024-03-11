@@ -5,25 +5,25 @@
 
 We present a dataset for graph-based question answering. The dataset consists of <question; candidate answer> pairs. For each candidate, we present a graph that is obtained by finding the shortest path between named entities mentioned in a question and a candidate answer. As a knowledge graph, we adopted Wikidata. Our dataset has the following fields:
 
-* sample_id - an identifier for <question, candidate answer>;
+* `sample_id` - an identifier for <question, candidate answer>;
 
-* question - question text;
+* `question` - question text;
 
-* questionEntity - comma-separated list of names (textual strings) for Wikidata concepts mentioned in a given question;
+* `questionEntity` - comma-separated list of names (textual strings) for Wikidata concepts mentioned in a given question;
 
-* answerEntity - a textual name of candidate answer (candidate is a concept from Wikidata) for the given question;
+* `answerEntity` - a textual name of candidate answer (candidate is a concept from Wikidata) for the given question;
 
-* groundTruthAnswerEntity - a textual name of ground truth answer (answer is a concept from Wikidata) for the given question;
+* `groundTruthAnswerEntity` - a textual name of ground truth answer (answer is a concept from Wikidata) for the given question;
 
-* answerEntityId - a Wikidata id of candidate answer (see "answerEntity" column). Example: "Q2599";
+* `answerEntityId` - a Wikidata id of candidate answer (see "answerEntity" column). Example: "Q2599";
 
-* questionEntityId - a comma-separated list of Wikidata ids for concepts mentioned in a given question (list of ids for mentions from "questionEntity" column);
+* `questionEntityId` - a comma-separated list of Wikidata ids for concepts mentioned in a given question (list of ids for mentions from "questionEntity" column);
 
-* groundTruthAnswerEntityId - a Wikidata id of ground truth answer (see "answerEntity" column). Example: "Q148234";
+* `groundTruthAnswerEntityId` - a Wikidata id of ground truth answer (see "answerEntity" column). Example: "Q148234";
 
-* correct - either "True" or "False". The field indicates whether a <question, answer candidate> is correct, i.e., candidate answer is a true answer to the given question;
+* `correct` - either "True" or "False". The field indicates whether a <question, answer candidate> is correct, i.e., candidate answer is a true answer to the given question;
 
-* graph - a shortest-path graph for a given <question, candidate answer> pair. The graph is obtained by taking the shortest paths from all mentioned concepts ("questionEntityId" column) to a candidate answer("answerEntityId" column) in the knowledge graph of Wikidata. The graph is stored in "node-link" JSON format from NetworkX. You can import the graph using the [node_link_graph](https://networkx.org/documentation/stable/reference/readwrite/generated/networkx.readwrite.json_graph.node_link_graph.html).
+* `graph` - a shortest-path graph for a given <question, candidate answer> pair. The graph is obtained by taking the shortest paths from all mentioned concepts ("questionEntityId" column) to a candidate answer("answerEntityId" column) in the knowledge graph of Wikidata. The graph is stored in "node-link" JSON format from NetworkX. You can import the graph using the [node_link_graph](https://networkx.org/documentation/stable/reference/readwrite/generated/networkx.readwrite.json_graph.node_link_graph.html).
 
 
 For an example on how to work with shortest path graphs using NetworkX, please see the "Data vizualization" section.
