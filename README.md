@@ -26,7 +26,7 @@ We present a dataset for graph-based question answering. The dataset consists of
 * `graph` - a shortest-path graph for a given <question, candidate answer> pair. The graph is obtained by taking the shortest paths from all mentioned concepts ("questionEntityId" column) to a candidate answer("answerEntityId" column) in the knowledge graph of Wikidata. The graph is stored in "node-link" JSON format from NetworkX. You can import the graph using the [node_link_graph](https://networkx.org/documentation/stable/reference/readwrite/generated/networkx.readwrite.json_graph.node_link_graph.html).
 
 
-For an example on how to work with shortest path graphs using NetworkX, please see the "Data vizualization" section.
+For an example on how to draw shortest path graphs using NetworkX, please see the "Data vizualization" section.
 
 
 Train dataset is available [here](https://github.com/uhh-lt/TextGraphs17-shared-task/blob/main/data/tsv/train.tsv). It can be used for initial experiments. Our dataset is also available at [HuggingFace](https://huggingface.co/datasets/s-nlp/TextGraphs17-shared-task-dataset).
